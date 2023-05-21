@@ -3,11 +3,6 @@ import { useState } from 'react'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
-// import File System Module
-import fs from "fs"; 
-  
-// import xml2js Module
-import { parseString } from "xml2js"; 
 
 function App() {
   const [roadInfo, setRoadInfo] = useState(0)
