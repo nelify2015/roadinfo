@@ -1,27 +1,34 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios'
+import React, { Suspense, useState } from "react";
+import './css/App.css'
+const Landing = React.lazy(() => import("./views/Landing"));
+const List = React.lazy(() => import("./views/List"));
+
+export const UserContext = React.createContext(0);
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Landing />,
+  },
+  {
+    path: "/list",
+    element: <List />,
+  },
+]);
+
 
 function App() {
-  const [roadInfo, setRoadInfo] = useState(0)
-
-  const getRoadInfo = () => {
-    axios.get('https://resource.data.one.gov.hk/td/jss/Journeytimev2.xml')
-      .then((data) => {
-        setRoadInfo(data.data)
-      })
-  }
-
-  const showData = () => {
-    console.log(roadInfo)
-  }
-
   return (
     <>
-      <button onClick={getRoadInfo}>Road Info</button>
-      <button onClick={showData}>Show</button>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </>
   )
 }
