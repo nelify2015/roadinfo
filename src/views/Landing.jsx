@@ -1,12 +1,14 @@
 import { useState, useContext } from 'react'
-import '../css/landing.css'
+// import '../css/landing.css'
 import axios from 'axios'
 import XMLParser from 'react-xml-parser';
 import { AppContext } from '../contexts/AppContext';
 import { useNavigate } from "react-router-dom";
 
-export default () => {
-  const [roadInfo, setRoadInfo] = useState()
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button } from 'react-bootstrap';
+
+function Landing () {
   const { state, dispatch } = useContext(AppContext)
   const navigate = useNavigate()
 
@@ -25,16 +27,14 @@ export default () => {
 
         dispatch({
           payload: {
-            info: {
-              all: json
-            }
+            all: json
           }
         })
       })
   }
 
   const showData = () => {
-    console.log(state.info)
+    console.log(state)
   }
 
   // const add = (val) => {
@@ -44,8 +44,8 @@ export default () => {
 
   return (
     <>
-      <button onClick={getRoadInfo}>Road Info</button>
-      <button onClick={showData}>Show</button>
+      <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
+      <Button onClick={showData} variant="secondary">Show</Button>
       <br/>
       <div onClick={() => navigate("/list")}>List</div>
       <br/>
@@ -56,3 +56,5 @@ export default () => {
     </>
   )
 }
+
+export default Landing
