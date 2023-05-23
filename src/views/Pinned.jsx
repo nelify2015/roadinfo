@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 // import { MyContext } from '../contexts/AppContext';
 
-function List() {
+function Pinned() {
   // const { cnt, setCnt } = useContext(MyContext)
 
   const showData = () => {
@@ -10,10 +10,11 @@ function List() {
 
   return (
     <>
+      <div>This is pinned page</div>
       {/* {cnt} */}
-      <button onClick={showData}>Show</button>
+      {/* <button onClick={showData}>Show</button> */}
     </>
   )
 }
 
-export default List
+export default Pinned

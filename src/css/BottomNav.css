@@ -9,16 +9,26 @@
   height: 100%;
 }
 
-/* .bottomNavBarItem {
-  background-color: red;
-  border: 1px solid red;
+.bottomNavBarItem {
+  /* background-color: red; */
+  /* padding: 10px 20px 10px 20px; */
+  cursor: pointer;
 }
 
 .bottomNavBarItem:hover {
-  background-color: blue;
+  background-color: #d6d6d6;
 }
 
-.bottomNavBarItem > div {
+.bottomNavBarItem:active {
+  background-color: #959595;
+  color: white;
+}
+
+.bi {
+  font-weight: blod;
+}
+
+/* .bottomNavBarItem > div {
   border: 1px solid green;
 } */
 

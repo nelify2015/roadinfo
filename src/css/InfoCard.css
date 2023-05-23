@@ -13,7 +13,8 @@
   background: #262525;
   color: #05F11D;
   border: 1px solid #fff;
-  max-width: 5rem;
+  min-width: 4rem;
+  /* max-width: 5rem; */
 }
 
 .info .card-text {

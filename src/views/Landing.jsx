@@ -6,7 +6,6 @@ import { AppContext } from '../contexts/AppContext';
 import { useNavigate } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button } from 'react-bootstrap';
 
 import InfoCard from '../components/InfoCard'
 
@@ -50,7 +49,9 @@ function Landing () {
 
   return (
     <>
-      {/* {items} */}
+      <div className="container-fluid">
+        {items}
+      </div>
       {/* <InfoCard info={state.info.all[0]}/> */}
 
       {/* <Button onClick={getRoadInfo} variant="primary">Road Info</Button>

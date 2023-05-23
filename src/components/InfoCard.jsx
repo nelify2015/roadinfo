@@ -23,7 +23,7 @@ function elem({info}) {
                 <div>{info.DESTINATION_ID}</div>
               </div>
               <div className="col-lg-1 col-2">
-                <Card className="info">
+                <Card className="info float-end">
                   <div className="card-text">
                     <div className="myClass d-flex justify-content-center align-items-center">
                       <div>{info.JOURNEY_DATA}</div>
