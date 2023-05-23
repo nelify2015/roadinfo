@@ -1,0 +1,31 @@
+.bottomNavBar {
+  background-color: #fff;
+  /* border: 1px solid black;   */
+  height: var(--bottomNavHeight);
+}
+
+.bottomNavBar > div {
+  /* border: 1px solid red; */
+  height: 100%;
+}
+
+/* .bottomNavBarItem {
+  background-color: red;
+  border: 1px solid red;
+}
+
+.bottomNavBarItem:hover {
+  background-color: blue;
+}
+
+.bottomNavBarItem > div {
+  border: 1px solid green;
+} */
+
+/* bottomNavBarItem:active {
+  background-color: green;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+} */
