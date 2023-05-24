@@ -4,6 +4,12 @@ import infoReducer from "../reducers/infoReducer";
 import themeReducer from "../reducers/themeReducer";
 export const APP_NAME = "ROADINFO";
 
+// Need to convert the HK1980 to WGS84 
+// Fr: HK1980 Grid
+// To: WGS84 (ITRF96) Geographic | Decimal Degree
+// Datum (Vertical): No
+import roadData from '../assets/data.json'
+
 //Check the localstorage or set a default state
 const initialState = JSON.parse(localStorage.getItem(APP_NAME))
   ? JSON.parse(localStorage.getItem(APP_NAME))
@@ -13,8 +19,8 @@ const initialState = JSON.parse(localStorage.getItem(APP_NAME))
         email: "",
         isAdmin: false,
       },
-      info: { all: [], pinned: [] },
-      theme: { dark: false },
+      info: { all: [], pinned: [], data: roadData },
+      theme: { dark: false },      
     };
 //Create your global context
 const AppContext = createContext(initialState);

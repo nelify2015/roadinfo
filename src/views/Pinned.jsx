@@ -1,15 +1,15 @@
 import { useState, useContext } from 'react'
-// import { MyContext } from '../contexts/AppContext';
+import { AppContext } from '../contexts/AppContext';
 
 function Pinned() {
-  // const { cnt, setCnt } = useContext(MyContext)
+  const { state, dispatch } = useContext(AppContext)
 
   const showData = () => {
     console.log('Show Data')
   }
 
   return (
-    <>
+    <>      
       <div>This is pinned page</div>
       {/* {cnt} */}
       {/* <button onClick={showData}>Show</button> */}

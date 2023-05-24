@@ -6,6 +6,7 @@ import { AppContext } from '../contexts/AppContext';
 import { useNavigate } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button } from 'react-bootstrap';
 
 import InfoCard from '../components/InfoCard'
 
@@ -16,7 +17,7 @@ function Landing () {
   const getRoadInfo = () => {
     axios.get('https://resource.data.one.gov.hk/td/jss/Journeytimev2.xml')
       .then((data) => {
-        console.log('Get Data')
+        console.log('INFO_SET_ALL')
         const xml = new XMLParser().parseFromString(data.data)
         // console.log({xml})
         // convert it to json, first children is no. of records, second children is attributes of records
@@ -24,12 +25,11 @@ function Landing () {
                         ...a, c.children.reduce((a, c) => ({
                           ...a, [c.name]: c.value
                         }), {})
-                      ], [])
+                      ], [])                  
 
         dispatch({
-          payload: {
-            all: json
-          }
+          type: "INFO_SET_ALL",
+          payload: { all: json }
         })
       })
   }
@@ -48,14 +48,9 @@ function Landing () {
   // }    
 
   return (
-    <>
-      <div className="container-fluid">
-        {items}
-      </div>
-      {/* <InfoCard info={state.info.all[0]}/> */}
-
-      {/* <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
-      <Button onClick={showData} variant="secondary">Show</Button> */}
+    <>      
+      <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
+      <Button onClick={showData} variant="secondary">Show</Button>
       {/* <br/>
       <div onClick={() => navigate("/list")}>List</div>
       <br/> */}
@@ -63,6 +58,12 @@ function Landing () {
       {/* {cnt}
       <button onClick={() => add(1)}>+</button>
       <button onClick={() => add(-1)}>-</button> */}
+
+      {/* <div className="container-fluid">
+        {items}
+      </div> */}
+      <InfoCard info={state.info.all[0]}/>
+
     </>
   )
 }

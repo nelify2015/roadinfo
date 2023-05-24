@@ -1,16 +1,12 @@
-const infoReducer = (state, action) => {
+const infoReducer = (state, action) => {  
   const { type, payload } = action;
   // console.log('infoReducer', {state}, {payload})
-  // switch (type) {
-  //   case "LOGIN":
-      // return { ...payload };
-    // case "LOGOUT":
-    //   return {};
-    // default:
-    //   return state;
-  // }
-
-  return payload
+  switch (type) {
+    case "INFO_SET_ALL":
+      return {...state, ...payload};
+    default:
+      return state;
+  }
 };
 
 export default infoReducer;

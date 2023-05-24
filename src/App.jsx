@@ -5,10 +5,9 @@ import BottomNav from './components/BottomNav'
 const Landing = React.lazy(() => import("./views/Landing"));
 const Pinned = React.lazy(() => import("./views/Pinned"));
 
-import 'bootstrap/dist/css/bootstrap.min.css'
 // import { Container } from 'react-bootstrap';
-
 import "bootstrap-icons/font/bootstrap-icons.css"
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const UserContext = React.createContext(0);
 
