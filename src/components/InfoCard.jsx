@@ -1,11 +1,12 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import '../css/InfoCard.css'
 import { Card } from 'react-bootstrap';
 import { AppContext } from '../contexts/AppContext';
 
 function elem({info}) {
-  const { state, dispatch } = useContext(AppContext)
-  const lang = "en"
+  const { state } = useContext(AppContext)
+  const [showPin, setShowPin] = useState(false)
+  const lang = "tc"
   // Sample
   // "LOCATION_ID": "H1",
   // "DESTINATION_ID": "CH",
@@ -16,7 +17,7 @@ function elem({info}) {
   // "JOURNEY_DESC": ""
 
   const getName = (id, typeName, lang) => {
-    // console.log(state.info)
+    if (typeof id === "undefined") return null
     const name = state.info.data[typeName][id][`name_${lang}`]
     if (name.trim() !== "")
       return name
@@ -29,9 +30,10 @@ function elem({info}) {
         <Card.Body bg="primary">
           <div className="card-text">
             <div className="row justify-content-right">
-              <div className="col-lg-11 col-10 pe-1 pe-sm-0">
-                <div>{getName(info.LOCATION_ID, "locations", lang)}</div>
-                <div>{getName(info.DESTINATION_ID, "destinations", lang)}</div>
+              <div className="col-lg-11 col-10 pe-2 pe-sm-0">
+                <div>
+                  {getName(info.DESTINATION_ID, "destinations", lang)} ({getName(info.LOCATION_ID, "locations", lang)})
+                </div>
               </div>
               <div className="col-lg-1 col-2 pe-0 pe-sm-2">
                 <Card className="info float-end">

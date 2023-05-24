@@ -39,7 +39,9 @@ function Landing () {
   }
 
   const items = state.info.all.map((item) =>
-    <InfoCard info={item} key={item.LOCATION_ID + item.DESTINATION_ID}/>
+    <div className="py-1" key={item.LOCATION_ID + item.DESTINATION_ID} >
+      <InfoCard info={item}/>
+    </div>
   );
 
   // const add = (val) => {
@@ -48,9 +50,9 @@ function Landing () {
   // }    
 
   return (
-    <>      
+    <>
       <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
-      <Button onClick={showData} variant="secondary">Show</Button>
+      <Button onClick={showData} variant="secondary">Show</Button>    
       {/* <br/>
       <div onClick={() => navigate("/list")}>List</div>
       <br/> */}
@@ -59,10 +61,10 @@ function Landing () {
       <button onClick={() => add(1)}>+</button>
       <button onClick={() => add(-1)}>-</button> */}
 
-      {/* <div className="container-fluid">
+      <div className="container-fluid">
         {items}
-      </div> */}
-      <InfoCard info={state.info.all[0]}/>
+      </div>
+      {/* <InfoCard info={state.info.all[0]}/> */}
 
     </>
   )
