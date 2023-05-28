@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 // import '../css/Landing.css'
 import axios from 'axios'
 import XMLParser from 'react-xml-parser';
@@ -12,7 +12,15 @@ import InfoCard from '../components/InfoCard'
 
 function Landing () {
   const { state, dispatch } = useContext(AppContext)
+  const [shownIndex, setShownIndex] = useState(-1)
   const navigate = useNavigate()
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    console.log('componentDidMount')
+  //   // getRoadInfo()
+  //   // setInterval(() => getRoadInfo(), 1000 * 60 * 2)
+  });  
 
   const getRoadInfo = () => {
     axios.get('https://resource.data.one.gov.hk/td/jss/Journeytimev2.xml')
@@ -38,11 +46,17 @@ function Landing () {
     console.log(state)
   }
 
-  const items = state.info.all.map((item) =>
-    <div className="py-1" key={item.LOCATION_ID + item.DESTINATION_ID} >
-      <InfoCard info={item}/>
-    </div>
-  );
+  const items = state.info.all.map((item, index) => {
+    const showPin = index === state.page.showPinIndex
+    const pinned = state.info.pinned.includes(index)
+    return (
+      <div className="py-1" key={index} >
+        <InfoCard info={item} roadData={state.info.data} infoIndex={index} dispatch={dispatch} showPin={showPin} pinned={pinned} />
+      </div>
+    )
+  });
+
+  
 
   // const add = (val) => {
   //   console.log('calling add')
@@ -51,6 +65,7 @@ function Landing () {
 
   return (
     <>
+      {/* {state.page.showPinIndex} */}
       <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
       <Button onClick={showData} variant="secondary">Show</Button>    
       {/* <br/>

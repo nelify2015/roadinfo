@@ -1,9 +1,22 @@
 const infoReducer = (state, action) => {  
   const { type, payload } = action;
-  // console.log('infoReducer', {state}, {payload})
+  let index = -1
+
   switch (type) {
     case "INFO_SET_ALL":
       return {...state, ...payload};
+    case "PIN_ROAD_INFO":
+      console.log('PIN_ROAD_INFO', payload, state)
+      // state.all[payload.infoIndex] = {...state.all[payload.infoIndex], pinned: payload.pinned}
+      if (payload.pinned) {
+        if (!state.pinned.includes(payload.infoIndex))
+          state.pinned.push(payload.infoIndex)
+      } else {
+        index = state.pinned.indexOf(payload.infoIndex)
+        if (index > -1)
+          state.pinned.splice(index, 1)
+      }
+      return state
     default:
       return state;
   }

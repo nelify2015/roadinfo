@@ -1,6 +1,7 @@
 import { useReducer, createContext, useEffect, useState } from "react";
 import userReducer from "../reducers/userReducer";
 import infoReducer from "../reducers/infoReducer";
+import pageReducer from "../reducers/PageReducer.jsx";
 import themeReducer from "../reducers/themeReducer";
 export const APP_NAME = "ROADINFO";
 
@@ -20,17 +21,19 @@ const initialState = JSON.parse(localStorage.getItem(APP_NAME))
         isAdmin: false,
       },
       info: { all: [], pinned: [], data: roadData },
-      theme: { dark: false },      
+      theme: { dark: false },
+      page: {}     
     };
 //Create your global context
 const AppContext = createContext(initialState);
 // const MyContext = createContext(0);
 
 // //Create combined reducers
-const combinedReducers = ({ user, info, theme }, action) => ({
+const combinedReducers = ({ user, info, theme, page }, action) => ({
   user: userReducer(user, action),
-  info: infoReducer(info, action),
+  info: infoReducer(info, action),  
   theme: themeReducer(theme, action),
+  page: pageReducer(page, action),
 });
 
 const AppState = ({ children }) => {
@@ -50,6 +53,7 @@ const AppState = ({ children }) => {
     </>
   );
 };
+
 
 export default AppState;
 
