@@ -8,17 +8,19 @@ import { useInterval, usePrevious } from "../hooks/CustomHooks"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 import InfoCard from '../components/InfoCard'
-
-import { useTranslation } from 'react-i18next';
+import FilterList from '../components/FilterList'
 
 function Landing () {
   const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(AppContext)
   const [shownIndex, setShownIndex] = useState(-1)
   const [roadInfoList, setRoadInfoList] = useState([])
-  const [loadCnt, setLoadCnt] = useState(0)
+  const [roadInfoFilteredList, setRoadInfoFilteredList] = useState([])
+  // const [loadCnt, setLoadCnt] = useState(0)
+  const [filter, setFilter] = useState(null)
   // const navigate = useNavigate()
   const refreshRate = 10000//1000 * 60 * 2
   // const prevLoadCnt = usePrevious(loadCnt)
@@ -26,15 +28,34 @@ function Landing () {
   useEffect(() => {
     const controller = new AbortController();
     console.log("Landing componentDidMounted")
-    if (loadCnt === 0) {
-      setLoadCnt((prev) => prev + 1 )
+    // if (loadCnt === 0) {
+    //   setLoadCnt((prev) => prev + 1 )
       getRoadInfo({signal: controller.signal})
-    }
+    // }
 
     return (() => {
       controller.abort()
     })
   }, [])
+
+  useEffect(() => {
+    console.log('useEffect', filter, roadInfoList.length)
+    filterRoadInfo()
+  }, [filter, roadInfoList.length])
+
+  const filterRoadInfo = () => {
+    let list = []
+    if (filter === null)
+      list = roadInfoList
+    else if (filter === 'PIN') {
+      list = roadInfoList.filter((item) => {
+        const id = `${item.LOCATION_ID}_${item.DESTINATION_ID}`
+        return state.info.pinned.includes(id)
+      })
+    }
+
+    setRoadInfoFilteredList(list)
+  }
 
   const getRoadInfo = (params = {}) => {
     axios.get('https://resource.data.one.gov.hk/td/jss/Journeytimev2.xml', params)
@@ -70,7 +91,7 @@ function Landing () {
   }
 
   // const items = state.info.all.map((item, index) => {
-  const items = roadInfoList.map((item, index) => {
+  const items = roadInfoFilteredList.map((item, index) => {
     const showPin = index === state.page.showPinIndex
     const pinned = state.info.pinned.includes(`${item.LOCATION_ID}_${item.DESTINATION_ID}`)
     return (
@@ -80,13 +101,18 @@ function Landing () {
     )
   });
 
-  // const add = (val) => {
-  //   console.log('calling add')
-  //   setCnt(pre => pre + val)
-  // }    
+  const options = {
+    toggleLabel: "Title",
+    items: [
+      { text: "All", value: null },
+      { text: "Pinned", value: "PIN" },
+    ]
+  }
 
   return (
     <>
+      {/* {filter} */}
+      <FilterList options={options} filter={filter} setFilter={setFilter} />
       {/* {t("Welcome to React")} <br /> */}
       <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
       <Button onClick={showData} variant="secondary">Show</Button>    
@@ -101,8 +127,6 @@ function Landing () {
       <div className="container-fluid">
         {items}
       </div>
-      {/* <InfoCard info={state.info.all[0]}/> */}
-
     </>
   )
 }
