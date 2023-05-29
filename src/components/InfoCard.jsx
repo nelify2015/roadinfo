@@ -68,7 +68,7 @@ function InfoCard({info, roadData, infoIndex, dispatch, showPin, pinned}) {
 
     dispatch({
       type: 'PIN_ROAD_INFO',
-      payload: {pinned: !pinned, infoIndex}
+      payload: {pinned: !pinned, infoIndex, infoId: `${info.LOCATION_ID}_${info.DESTINATION_ID}`}
     })
 
     setTimeout(() => itemClick(), 150)
