@@ -1,0 +1,45 @@
+.filter-container {
+  position: fixed;
+  right: 0.75em;
+  top: 0.75em;
+  z-index: 3;
+  opacity: .3;
+}
+
+.filter-container:hover {
+  opacity: 1;
+}
+
+.filter-items-container {
+  opacity: 0;
+  position: fixed;
+  right: 0.75em;
+  top: 4.35em;
+  z-index: 4;
+  cursor: pointer;
+}
+
+.btn-circle.btn-sm, .btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  text-align: center;
+}
+.btn-circle.btn-md {
+  width: 50px;
+  height: 50px;
+  padding: 7px 10px;
+  border-radius: 25px;
+  font-size: 1em;
+  text-align: center;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 1.8em;
+  text-align: center;
+}

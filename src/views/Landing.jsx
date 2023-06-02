@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect, useRef } from 'react'
-// import '../css/Landing.css'
+import '../css/Landing.css'
 import axios from 'axios'
 import XMLParser from 'react-xml-parser';
 import { AppContext } from '../contexts/AppContext';
@@ -20,7 +20,7 @@ function Landing () {
   const [roadInfoList, setRoadInfoList] = useState([])
   const [roadInfoFilteredList, setRoadInfoFilteredList] = useState([])
   // const [loadCnt, setLoadCnt] = useState(0)
-  const [filter, setFilter] = useState(null)
+  const [filter, setFilter] = useState("")
   // const navigate = useNavigate()
   const refreshRate = 10000//1000 * 60 * 2
   // const prevLoadCnt = usePrevious(loadCnt)
@@ -45,7 +45,7 @@ function Landing () {
 
   const filterRoadInfo = () => {
     let list = []
-    if (filter === null)
+    if (filter === "")
       list = roadInfoList
     else if (filter === 'PIN') {
       list = roadInfoList.filter((item) => {
@@ -104,18 +104,18 @@ function Landing () {
   const options = {
     toggleLabel: "Title",
     items: [
-      { text: "All", value: null },
+      { text: "All", value: "" },
       { text: "Pinned", value: "PIN" },
     ]
   }
 
   return (
     <>
-      {/* {filter} */}
       <FilterList options={options} filter={filter} setFilter={setFilter} />
+      {/* {filter} */}
       {/* {t("Welcome to React")} <br /> */}
-      <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
-      <Button onClick={showData} variant="secondary">Show</Button>    
+      {/* <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
+      <Button onClick={showData} variant="secondary">Show</Button> */}
       {/* <br/>
       <div onClick={() => navigate("/list")}>List</div>
       <br/> */}
@@ -124,7 +124,7 @@ function Landing () {
       <button onClick={() => add(1)}>+</button>
       <button onClick={() => add(-1)}>-</button> */}
 
-      <div className="container-fluid">
+      <div className="container-fluid">        
         {items}
       </div>
     </>
