@@ -1,7 +1,7 @@
 .filter-container {
   position: fixed;
   right: 0.75em;
-  top: 0.75em;
+  top: calc(var(--topBarHeight) + var(standard-padding-size));
   z-index: 3;
   opacity: .3;
 }

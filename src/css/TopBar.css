@@ -1,0 +1,11 @@
+.top-bar {
+  height: var(--topBarHeight);
+  background: #fff;
+  border-bottom: 1px solid #F6F0F0;
+}
+
+.top-bar > div {
+  height: 100%;
+  font-family: Radley;
+  font-size: 1.8em;
+}

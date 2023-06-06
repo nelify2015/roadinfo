@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from "react";
 import './css/App.css'
 
+import TopBar from './components/TopBar'
 import BottomNav from './components/BottomNav'
 const Landing = React.lazy(() => import("./views/Landing"));
 const Pinned = React.lazy(() => import("./views/Pinned"));
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
+        <TopBar />
         <div className="content">
           <Routes>            
             <Route path="/" element={<Landing />} />
