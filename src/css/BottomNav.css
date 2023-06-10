@@ -2,6 +2,7 @@
   background-color: #fff;
   /* border: 1px solid black;   */
   height: var(--bottomNavHeight);
+  border-top: 1px solid #F6F0F0;
 }
 
 .bottomNavBar > div {

@@ -1,10 +1,11 @@
 :root {
+  --topBarHeight: 3em;
   --bottomNavHeight: 5em;
   --standard-padding-size: 0.75em;
 }
 
 .content {  
-  padding-top: var(--standard-padding-size);
+  padding-top: calc(var(--topBarHeight) + var(--standard-padding-size));
   padding-bottom: calc(var(--bottomNavHeight) + var(--standard-padding-size));
 }
 

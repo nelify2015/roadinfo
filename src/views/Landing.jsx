@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import InfoCard from '../components/InfoCard'
 import FilterList from '../components/FilterList'
+import SearchAndFilter from '../components/SearchAndFilter'
 
 function Landing () {
   const { t, i18n } = useTranslation();
@@ -111,7 +112,8 @@ function Landing () {
 
   return (
     <>
-      <FilterList options={options} filter={filter} setFilter={setFilter} />
+      {/* <FilterList options={options} filter={filter} setFilter={setFilter} /> */}
+      
       {/* {filter} */}
       {/* {t("Welcome to React")} <br /> */}
       {/* <Button onClick={getRoadInfo} variant="primary">Road Info</Button>
@@ -125,6 +127,7 @@ function Landing () {
       <button onClick={() => add(-1)}>-</button> */}
 
       <div className="container-fluid">        
+        <SearchAndFilter options={options} filter={filter} setFilter={setFilter} />
         {items}
       </div>
     </>
