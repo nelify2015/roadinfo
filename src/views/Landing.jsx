@@ -23,7 +23,7 @@ function Landing () {
   // const [loadCnt, setLoadCnt] = useState(0)
   const [filter, setFilter] = useState("")
   // const navigate = useNavigate()
-  const refreshRate = 10000//1000 * 60 * 2
+  const refreshRate = 1000 * 60 * 2
   // const prevLoadCnt = usePrevious(loadCnt)
 
   useEffect(() => {
@@ -96,7 +96,7 @@ function Landing () {
     const showPin = index === state.page.showPinIndex
     const pinned = state.info.pinned.includes(`${item.LOCATION_ID}_${item.DESTINATION_ID}`)
     return (
-      <div className="py-1" key={index} >
+      <div className="py-1 col col-12 col-lg-6" key={index} >
         <InfoCard info={item} roadData={state.info.data} infoIndex={index} dispatch={dispatch} showPin={showPin} pinned={pinned} />
       </div>
     )
@@ -128,7 +128,9 @@ function Landing () {
 
       <div className="container-fluid">        
         <SearchAndFilter options={options} filter={filter} setFilter={setFilter} />
-        {items}
+        <div className="row wrap">
+          {items}
+        </div>
       </div>
     </>
   )

@@ -22,12 +22,12 @@ function SearchAndFilter({options, filter, setFilter, text, setText}) {
           <i className="bi bi-search"></i>
         </InputGroup.Text>
         <Form.Control
-          placeholder="Username"
-          aria-label="Username"
+          placeholder="Search Here..."
+          aria-label="Search Here"
           aria-describedby="basic-addon1"
         />
-        <Dropdown onSelect={filterClick}>    
-          <Dropdown.Toggle split className="btn-secondary" id="dropdown-split-basic" />
+        <Dropdown onSelect={filterClick}>
+          <Dropdown.Toggle split className="btn-dark btn-lg" id="dropdown-split-basic" />
           <Dropdown.Menu>
             {items}
           </Dropdown.Menu>
